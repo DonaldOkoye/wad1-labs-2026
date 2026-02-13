@@ -1,11 +1,20 @@
 'use strict';
 
 import logger from "../utils/logger.js";
+import empStore from "../models/emp-store.js";
 
 const about = {
   createView(request, response) {
     logger.info("About page loading!");
-    response.send('About the Playlist app');   
+    
+    
+     const viewData = {
+      title: "About The App",
+      emps: empStore.getAppInfo()
+    };
+
+    logger.info(viewData.emps)
+    response.render('about', viewData);
   },
 };
 
